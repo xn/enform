@@ -1,0 +1,1179 @@
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (144.4ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (98.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20111025035303)
+  [1m[35m (0.7ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111025035303')[0m
+Migrating to CreateComments (20111025035331)
+  [1m[35m (0.6ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "title" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_comments_on_post_id" ON "comments" ("post_id")
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111025035331')[0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_comments_on_post_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20111025035303)
+Migrating to CreateComments (20111025035331)
+Migrating to CreateCategories (20111025042155)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("categories")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_categories_on_post_id" ON "categories" ("post_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20111025042155')
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("categories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_categories_on_post_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_comments_on_post_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("posts")[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20111025035303)
+Migrating to CreateComments (20111025035331)
+Migrating to CreateCategories (20111025042155)
+Migrating to CreateAuthors (20111025042312)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "authors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "posts" ADD "author_id" integer
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20111025042312')[0m
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("authors")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("categories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_categories_on_post_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_comments_on_post_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("posts")[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20111025035303)
+Migrating to CreateComments (20111025035331)
+Migrating to CreateCategories (20111025042155)
+Migrating to CreateAuthors (20111025042312)
+Migrating to CreateTagLines (20111025042701)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "tag_lines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "author_id" integer, "body" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("tag_lines")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_tag_lines_on_author_id" ON "tag_lines" ("author_id")[0m
+  [1m[35m (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20111025042701')
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("authors")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("categories")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_categories_on_post_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_comments_on_post_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("posts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("tag_lines")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_tag_lines_on_author_id')
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreatePosts (20111025035303)
+Migrating to CreateComments (20111025035331)
+Migrating to CreateCategories (20111025042155)
+Migrating to CreateAuthors (20111025042312)
+Migrating to CreateTagLines (20111025042701)
+  [1m[35m (0.3ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("authors")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("categories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_categories_on_post_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_comments_on_post_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("posts")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("tag_lines")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_tag_lines_on_author_id')[0m
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:27:23 -0500
+  Processing by PostsController#new as HTML
+Completed 500 Internal Server Error in 117ms
+
+ActionView::MissingTemplate (Missing template posts/new, application/new with {:handlers=>[:erb, :builder], :formats=>[:html], :locale=>[:en, :en]}. Searched in:
+  * "/home/xn/sites/enform/spec/dummy/app/views"
+):
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (15.5ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:28:38 -0500
+  Processing by PostsController#new as HTML
+Rendered posts/new.html.haml within layouts/application (91.9ms)
+Completed 500 Internal Server Error in 184ms
+
+ActionView::Template::Error (undefined method `semantic_form_for' for #<#<Class:0x00000004615e28>:0x000000045a1f78>):
+    1: %h2
+    2:   Create Post
+    3: = semantic_form_for(:post, :html => { :method => :post }) do |f|
+    4:   = f.semantic_errors
+    5:   = render 'posts/form', :f => f
+    6:   = f.buttons do
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__2802324994920711435_39287280'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.1ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:29:34 -0500
+  Processing by PostsController#new as HTML
+Rendered posts/new.html.haml within layouts/application (4.1ms)
+Completed 500 Internal Server Error in 102ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.errors):
+    1: %h2
+    2:   Create Post
+    3: = semantic_form_for(:post, :html => { :method => :post }) do |f|
+    4:   = f.semantic_errors
+    5:   = render 'posts/form', :f => f
+    6:   = f.buttons do
+    7:     = f.commit_button :submit, "Create"
+  app/views/posts/new.html.haml:4:in `block in _app_views_posts_new_html_haml___1650682791746343848_42556840'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml___1650682791746343848_42556840'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.2ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:31:09 -0500
+  Processing by PostsController#new as HTML
+ERROR: compiling _app_views_posts__form_html_haml__1552938696110884989_38087580 RAISED /home/xn/sites/enform/spec/dummy/app/views/posts/_form.html.haml:23: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_posts__form_html_haml__1552938696110884989_38087580(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "posts/_form";_old_output_buffer = @output_buffer;f = local_assigns[:f];form = local_assigns[:form];;begin;extend Haml::Helpers;_hamlout = @haml_buffer = Haml::Buffer.new(@haml_buffer, {:autoclose=>["meta", "img", "link", "br", "hr", "input", "area", "param", "col", "base"], :preserve=>["textarea", "pre", "code"], :attr_wrapper=>"'", :ugly=>false, :format=>:html5, :encoding=>"UTF-8", :escape_html=>true, :escape_attrs=>true});_erbout = _hamlout.buffer;__in_erb_template = true;;haml_temp =  f.inputs do
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :title
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :body
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :created_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :updated_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :category do |category|
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :id
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :title
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :body
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :created_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :updated_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :author_id
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( category.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :comments do |comment|
+haml_temp =  render 'comments', :f => comment
+_hamlout.push_text("<div class='links'>\n  #{_hamlout.adjust_tabs(1); _hamlout.format_script_false_false_false_true_false_true_false(( link_to_add_association 'add comment', f, :comments
+));}\n</div>\n", -1, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);::Haml::Util.html_safe(_erbout);ensure;@haml_buffer = @haml_buffer.upper;end;
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `module_eval'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `compile'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:190:in `compile!'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:143:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:256:in `render_partial'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:228:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:227:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:219:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:11:in `block in render_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers.rb:90:in `non_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:11:in `render_with_haml'
+/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__63602968029752882_40869240'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `block (2 levels) in form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers.rb:255:in `with_tabs'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `block in form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/xss_mods.rb:109:in `with_output_buffer_with_haml_xss'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:105:in `capture_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/form_helper.rb:590:in `fields_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/form_helper.rb:373:in `form_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:182:in `form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/xss_mods.rb:132:in `form_for_with_haml_xss'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:161:in `block in semantic_form_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:192:in `with_custom_field_error_proc'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:160:in `semantic_form_for'
+/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__63602968029752882_40869240'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:144:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:40:in `block (2 levels) in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:39:in `block in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:47:in `render_with_layout'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:38:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:12:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:9:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:120:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/streaming.rb:250:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:114:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/renderers.rb:30:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/compatibility.rb:43:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:99:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:268:in `block in retrieve_response_from_mimes'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `respond_to'
+/home/xn/sites/enform/spec/dummy/app/controllers/posts_controller.rb:29:in `new'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:167:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:416:in `_run__238146481918882212__process_action__4031253540603794728__callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:386:in `_run_process_action_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/params_wrapper.rb:201:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:121:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:45:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:193:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:236:in `block in action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:29:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:152:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:96:in `block in recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:82:in `optimized_each'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:95:in `recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:141:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:532:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/etag.rb:23:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/conditionalget.rb:25:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/flash.rb:243:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:195:in `context'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:190:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/cookies.rb:331:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/query_cache.rb:62:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:477:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/sendfile.rb:101:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/logger.rb:13:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/methodoverride.rb:24:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/runtime.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/lock.rb:15:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/static.rb:53:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/engine.rb:456:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/content_length.rb:16:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/handler/webrick.rb:59:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+Rendered posts/_form.html.haml (4.5ms)
+Rendered posts/new.html.haml within layouts/application (31.1ms)
+Completed 500 Internal Server Error in 171ms
+
+ActionView::Template::Error (/home/xn/sites/enform/spec/dummy/app/views/posts/_form.html.haml:23: syntax error, unexpected keyword_ensure, expecting $end):
+  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__63602968029752882_40869240'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__63602968029752882_40869240'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.3ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:35:50 -0500
+  Processing by PostsController#new as HTML
+ERROR: compiling _app_views_posts__form_html_haml___2728478843856735247_30083700 RAISED /home/xn/sites/enform/spec/dummy/app/views/posts/_form.html.haml:26: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_posts__form_html_haml___2728478843856735247_30083700(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "posts/_form";_old_output_buffer = @output_buffer;f = local_assigns[:f];form = local_assigns[:form];;begin;extend Haml::Helpers;_hamlout = @haml_buffer = Haml::Buffer.new(@haml_buffer, {:autoclose=>["meta", "img", "link", "br", "hr", "input", "area", "param", "col", "base"], :preserve=>["textarea", "pre", "code"], :attr_wrapper=>"'", :ugly=>false, :format=>:html5, :encoding=>"UTF-8", :escape_html=>true, :escape_attrs=>true});_erbout = _hamlout.buffer;__in_erb_template = true;;haml_temp =  f.inputs do
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :title
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :body
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :created_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :updated_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :category do |category|
+_hamlout.push_text("#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :title
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :body
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :created_at
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :updated_at
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :comments do |comment|
+haml_temp =  render 'comments', :f => comment
+_hamlout.push_text("<div class='links'>\n  #{_hamlout.adjust_tabs(1); _hamlout.format_script_false_false_false_true_false_true_false(( link_to_add_association 'add comment', f, :comments
+));}\n</div>\n", -1, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);::Haml::Util.html_safe(_erbout);ensure;@haml_buffer = @haml_buffer.upper;end;
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `module_eval'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `compile'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:190:in `compile!'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:143:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:256:in `render_partial'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:228:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:227:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:219:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:11:in `block in render_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers.rb:90:in `non_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:11:in `render_with_haml'
+/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__696580705965391849_34304420'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `block (2 levels) in form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers.rb:255:in `with_tabs'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `block in form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/xss_mods.rb:109:in `with_output_buffer_with_haml_xss'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:105:in `capture_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/form_helper.rb:590:in `fields_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/form_helper.rb:373:in `form_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:182:in `form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/xss_mods.rb:132:in `form_for_with_haml_xss'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:161:in `block in semantic_form_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:192:in `with_custom_field_error_proc'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:160:in `semantic_form_for'
+/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__696580705965391849_34304420'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:144:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:40:in `block (2 levels) in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:39:in `block in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:47:in `render_with_layout'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:38:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:12:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:9:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:120:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/streaming.rb:250:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:114:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/renderers.rb:30:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/compatibility.rb:43:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:99:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:268:in `block in retrieve_response_from_mimes'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `respond_to'
+/home/xn/sites/enform/spec/dummy/app/controllers/posts_controller.rb:29:in `new'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:167:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:416:in `_run__3135884189320592499__process_action__1312913289451423321__callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:386:in `_run_process_action_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/params_wrapper.rb:201:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:121:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:45:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:193:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:236:in `block in action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:29:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:152:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:96:in `block in recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:82:in `optimized_each'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:95:in `recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:141:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:532:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/etag.rb:23:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/conditionalget.rb:25:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/flash.rb:243:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:195:in `context'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:190:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/cookies.rb:331:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/query_cache.rb:62:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:477:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/sendfile.rb:101:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/logger.rb:13:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/methodoverride.rb:24:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/runtime.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/lock.rb:15:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/static.rb:53:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/engine.rb:456:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/content_length.rb:16:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/handler/webrick.rb:59:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+Rendered posts/_form.html.haml (49.4ms)
+Rendered posts/new.html.haml within layouts/application (73.4ms)
+Completed 500 Internal Server Error in 170ms
+
+ActionView::Template::Error (/home/xn/sites/enform/spec/dummy/app/views/posts/_form.html.haml:26: syntax error, unexpected keyword_ensure, expecting $end):
+0  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__696580705965391849_34304420'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__696580705965391849_34304420'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.4ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:38:23 -0500
+  Processing by PostsController#new as HTML
+ERROR: compiling _app_views_posts_new_html_haml__696580705965391849_36379300 RAISED /home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:35: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_posts_new_html_haml__696580705965391849_36379300(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "posts/new";_old_output_buffer = @output_buffer;;begin;extend Haml::Helpers;_hamlout = @haml_buffer = Haml::Buffer.new(@haml_buffer, {:autoclose=>["meta", "img", "link", "br", "hr", "input", "area", "param", "col", "base"], :preserve=>["textarea", "pre", "code"], :attr_wrapper=>"'", :ugly=>false, :format=>:html5, :encoding=>"UTF-8", :escape_html=>true, :escape_attrs=>true});_erbout = _hamlout.buffer;__in_erb_template = true;;_hamlout.push_text("<h2>\n  Create Post\n</h2>\n", 0, false);
+
+haml_temp =  semantic_form_for(@post, :html => { :method => :post }) do |f|
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( f.semantic_errors
+));}\n", 0, false);haml_temp =  f.inputs do
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :title
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :body
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :created_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :updated_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :category do |category|
+_hamlout.push_text("#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :title
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :body
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :created_at
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :updated_at
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :comments do |comment|
+haml_temp =  render 'comments', :f => comment
+_hamlout.push_text("<div class='links'>\n  #{_hamlout.adjust_tabs(1); _hamlout.format_script_false_false_false_true_false_true_false(( link_to_add_association 'add comment', f, :comments
+));}\n</div>\n", -1, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.buttons do
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( f.commit_button :submit, "Create"
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n#{_hamlout.format_script_false_false_false_true_false_true_false(( link_to "Back", :back
+));}\n", 0, false);::Haml::Util.html_safe(_erbout);ensure;@haml_buffer = @haml_buffer.upper;end;
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `module_eval'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `compile'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:190:in `compile!'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:143:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:40:in `block (2 levels) in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:39:in `block in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:47:in `render_with_layout'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:38:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:12:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:9:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:120:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/streaming.rb:250:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:114:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/renderers.rb:30:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/compatibility.rb:43:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:99:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:268:in `block in retrieve_response_from_mimes'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `respond_to'
+/home/xn/sites/enform/spec/dummy/app/controllers/posts_controller.rb:29:in `new'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:167:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:416:in `_run__3135884189320592499__process_action__1312913289451423321__callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:386:in `_run_process_action_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/params_wrapper.rb:201:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:121:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:45:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:193:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:236:in `block in action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:29:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:152:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:96:in `block in recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:82:in `optimized_each'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:95:in `recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:141:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:532:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/etag.rb:23:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/conditionalget.rb:25:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/flash.rb:243:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:195:in `context'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:190:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/cookies.rb:331:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/query_cache.rb:62:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:477:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/sendfile.rb:101:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/logger.rb:13:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/methodoverride.rb:24:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/runtime.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/lock.rb:15:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/static.rb:53:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/engine.rb:456:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/content_length.rb:16:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/handler/webrick.rb:59:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+Rendered posts/new.html.haml within layouts/application (5.5ms)
+Completed 500 Internal Server Error in 13ms
+
+ActionView::Template::Error (/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:35: syntax error, unexpected keyword_ensure, expecting $end):
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (4.7ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:39:03 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/new.html.haml within layouts/application (582.4ms)
+Completed 500 Internal Server Error in 590ms
+
+ActionView::Template::Error (Missing partial posts/comments, application/comments with {:handlers=>[:erb, :builder, :haml], :formats=>[:html], :locale=>[:en, :en]}. Searched in:
+  * "/home/xn/sites/enform/spec/dummy/app/views"
+):
+    22:     = category.input :author
+    23:   = f.semantic_fields_for :comments do |comment|
+    24:     = render 'comments', :f => comment
+    25:     .links
+    26:       = link_to_add_association 'add comment', f, :comments
+    27: 
+    28:   = f.buttons do
+  app/views/posts/new.html.haml:25:in `block (2 levels) in _app_views_posts_new_html_haml__696580705965391849_36535240'
+  app/views/posts/new.html.haml:24:in `block in _app_views_posts_new_html_haml__696580705965391849_36535240'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__696580705965391849_36535240'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.1ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:39:33 -0500
+  Processing by PostsController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors" 
+Rendered posts/new.html.haml within layouts/application (217.9ms)
+Completed 500 Internal Server Error in 224ms
+
+ActionView::Template::Error (Missing partial posts/comments with {:handlers=>[:erb, :builder, :haml], :formats=>[:html], :locale=>[:en, :en]}. Searched in:
+  * "/home/xn/sites/enform/spec/dummy/app/views"
+):
+    22:     = category.input :author
+    23:   = f.semantic_fields_for :comments do |comment|
+    24:     = render 'posts/comments', :f => comment
+    25:     .links
+    26:       = link_to_add_association 'add comment', f, :comments
+    27: 
+    28:   = f.buttons do
+  app/views/posts/new.html.haml:25:in `block (2 levels) in _app_views_posts_new_html_haml__696580705965391849_29768560'
+  app/views/posts/new.html.haml:24:in `block in _app_views_posts_new_html_haml__696580705965391849_29768560'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__696580705965391849_29768560'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (4.9ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:39:52 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/_comment.haml (89.4ms)
+Rendered posts/new.html.haml within layouts/application (317.2ms)
+Completed 500 Internal Server Error in 324ms
+
+ActionView::Template::Error (Missing partial posts/comment_fields, application/comment_fields with {:handlers=>[:erb, :builder, :haml], :formats=>[:html], :locale=>[:en, :en]}. Searched in:
+  * "/home/xn/sites/enform/spec/dummy/app/views"
+):
+    23:   = f.semantic_fields_for :comments do |comment|
+    24:     = render 'comment', :f => comment
+    25:     .links
+    26:       = link_to_add_association 'add comment', f, :comments
+    27: 
+    28:   = f.buttons do
+    29:     = f.commit_button :submit, "Create"
+  app/views/posts/new.html.haml:26:in `block (2 levels) in _app_views_posts_new_html_haml__696580705965391849_30513880'
+  app/views/posts/new.html.haml:24:in `block in _app_views_posts_new_html_haml__696580705965391849_30513880'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__696580705965391849_30513880'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.2ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:40:36 -0500
+  Processing by PostsController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors" 
+Rendered posts/_comment.haml (34.5ms)
+Rendered posts/new.html.haml within layouts/application (255.3ms)
+Completed 500 Internal Server Error in 262ms
+
+ActionView::Template::Error (undefined method `reflect_on_association' for NilClass:Class):
+    23:   = f.semantic_fields_for :comments do |comment|
+    24:     = render 'comment', :f => comment
+    25:     .links
+    26:       = link_to_add_association 'add comment', comment, :comments
+    27: 
+    28:   = f.buttons do
+    29:     = f.commit_button :submit, "Create"
+  app/views/posts/new.html.haml:26:in `block (2 levels) in _app_views_posts_new_html_haml__696580705965391849_33059680'
+  app/views/posts/new.html.haml:24:in `block in _app_views_posts_new_html_haml__696580705965391849_33059680'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__696580705965391849_33059680'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.0ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:44:39 -0500
+  Processing by PostsController#new as HTML
+ERROR: compiling _app_views_posts__form_html_haml___148537836926023281_40342620 RAISED /home/xn/sites/enform/spec/dummy/app/views/posts/_form.html.haml:26: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_posts__form_html_haml___148537836926023281_40342620(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "posts/_form";_old_output_buffer = @output_buffer;f = local_assigns[:f];form = local_assigns[:form];;begin;extend Haml::Helpers;_hamlout = @haml_buffer = Haml::Buffer.new(@haml_buffer, {:autoclose=>["meta", "img", "link", "br", "hr", "input", "area", "param", "col", "base"], :preserve=>["textarea", "pre", "code"], :attr_wrapper=>"'", :ugly=>false, :format=>:html5, :encoding=>"UTF-8", :escape_html=>true, :escape_attrs=>true});_erbout = _hamlout.buffer;__in_erb_template = true;;haml_temp =  f.inputs do
+_hamlout.push_text("#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :title
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :body
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :created_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :updated_at
+));}\n#{_hamlout.format_script_false_false_false_true_false_true_false(( f.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :category do |category|
+_hamlout.push_text("#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :title
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :body
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :created_at
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :updated_at
+));}\n#{
+_hamlout.format_script_false_false_false_true_false_true_false(( category.input :author
+));}\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);haml_temp =  f.semantic_fields_for :comments do |comment|
+haml_temp =  render 'comment_fields', :f => comment
+_hamlout.push_text("<div class='links'>\n  #{_hamlout.adjust_tabs(1); _hamlout.format_script_false_false_false_true_false_true_false(( link_to_add_association 'add comment', f, :comments
+));}\n</div>\n", -1, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);end
+_hamlout.buffer << _hamlout.format_script_false_false_false_true_false_false_false(haml_temp);_hamlout.push_text("\n", 0, false);::Haml::Util.html_safe(_erbout);ensure;@haml_buffer = @haml_buffer.upper;end;
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `module_eval'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:282:in `compile'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:190:in `compile!'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:143:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:256:in `render_partial'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:228:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:227:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/partial_renderer.rb:219:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:11:in `block in render_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers.rb:90:in `non_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:11:in `render_with_haml'
+/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml___631690788955723707_44589260'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `block (2 levels) in form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers.rb:255:in `with_tabs'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:180:in `block in form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/xss_mods.rb:109:in `with_output_buffer_with_haml_xss'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:105:in `capture_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/form_helper.rb:590:in `fields_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/helpers/form_helper.rb:373:in `form_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/action_view_mods.rb:182:in `form_for_with_haml'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/haml-3.1.3/lib/haml/helpers/xss_mods.rb:132:in `form_for_with_haml_xss'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:161:in `block in semantic_form_for'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:192:in `with_custom_field_error_proc'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/formtastic-2.0.2/lib/formtastic/helpers/form_helper.rb:160:in `semantic_form_for'
+/home/xn/sites/enform/spec/dummy/app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml___631690788955723707_44589260'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:144:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:55:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/template.rb:142:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:40:in `block (2 levels) in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:33:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:39:in `block in render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:47:in `render_with_layout'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:38:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:12:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/abstract_renderer.rb:22:in `wrap_formats'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/template_renderer.rb:9:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:120:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/streaming.rb:250:in `_render_template'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:114:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/renderers.rb:30:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/compatibility.rb:43:in `render_to_body'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:99:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:268:in `block in retrieve_response_from_mimes'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/mime_responds.rb:195:in `respond_to'
+/home/xn/sites/enform/spec/dummy/app/controllers/posts_controller.rb:29:in `new'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:167:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:416:in `_run__4363625344248077173__process_action__3572560094542685038__callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:386:in `_run_process_action_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `block in instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/notifications.rb:53:in `instrument'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/params_wrapper.rb:201:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/base.rb:121:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/abstract_controller/rendering.rb:45:in `process'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:193:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_controller/metal.rb:236:in `block in action'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:65:in `dispatch'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:29:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:152:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:96:in `block in recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:82:in `optimized_each'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/code_generation.rb:95:in `recognize'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-mount-0.8.3/lib/rack/mount/route_set.rb:141:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/routing/route_set.rb:532:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/etag.rb:23:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/conditionalget.rb:25:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/flash.rb:243:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:195:in `context'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/session/abstract/id.rb:190:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/cookies.rb:331:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/query_cache.rb:62:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activerecord-3.1.1/lib/active_record/connection_adapters/abstract/connection_pool.rb:477:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:392:in `_run_call_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/callbacks.rb:28:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/reloader.rb:68:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/sendfile.rb:101:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/logger.rb:13:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/methodoverride.rb:24:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/runtime.rb:17:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/activesupport-3.1.1/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/lock.rb:15:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/static.rb:53:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/engine.rb:456:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/content_length.rb:16:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/railties-3.1.1/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/rack-1.3.5/lib/rack/handler/webrick.rb:59:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/xn/.rvm/rubies/ruby-1.9.2-head/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+Rendered posts/_form.html.haml (4.7ms)
+Rendered posts/new.html.haml within layouts/application (29.0ms)
+Completed 500 Internal Server Error in 127ms
+
+ActionView::Template::Error (/home/xn/sites/enform/spec/dummy/app/views/posts/_form.html.haml:26: syntax error, unexpected keyword_ensure, expecting $end):
+0  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml___631690788955723707_44589260'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml___631690788955723707_44589260'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.3ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:57:18 -0500
+  Processing by PostsController#new as HTML
+Rendered posts/_form.html.haml (1.8ms)
+Rendered posts/new.html.haml within layouts/application (25.8ms)
+Completed 500 Internal Server Error in 123ms
+
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %h3 and nested within it.):
+    11:   = category.input :updated_at
+    12:   = category.input :author
+    13: %h3 Comments
+    14:   #comments
+    15:     = f.semantic_fields_for :comments do |comment|
+    16:       = render 'comment_fields', :f => comment
+    17:     .links
+  app/views/posts/_form.html.haml:14
+  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__3646729209013504296_40580400'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__3646729209013504296_40580400'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.2ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:58:39 -0500
+  Processing by PostsController#new as HTML
+Rendered posts/_form.html.haml (1.9ms)
+Rendered posts/new.html.haml within layouts/application (25.6ms)
+Completed 500 Internal Server Error in 122ms
+
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %h3 and nested within it.):
+    11:   = category.input :updated_at
+    12:   = category.input :author
+    13: %h3 Comments
+    14:   #comments
+    15:     = f.semantic_fields_for :comments do |comment|
+    16:       = render 'comment_fields', :f => comment
+    17:     .links
+  app/views/posts/_form.html.haml:14
+  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__3937480660713534059_36579420'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__3937480660713534059_36579420'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.1ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 01:59:37 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/_comment_fields.haml (40.5ms)
+Rendered posts/_comment_fields.haml (62.1ms)
+Rendered posts/_form.html.haml (763.2ms)
+Rendered posts/new.html.haml within layouts/application (787.1ms)
+Completed 500 Internal Server Error in 884ms
+
+ActionView::Template::Error (undefined method `author' for #<Comment:0x0000000606b868>):
+    4:     = f.input :body
+    5:     = f.input :created_at
+    6:     = f.input :updated_at
+    7:     = f.input :author
+  app/views/posts/_comment_fields.haml:7:in `block in _app_views_posts__comment_fields_haml___4288748552898682072_50148600'
+  app/views/posts/_comment_fields.haml:2:in `_app_views_posts__comment_fields_haml___4288748552898682072_50148600'
+  app/views/posts/_form.html.haml:18:in `_app_views_posts__form_html_haml___3966047639622805077_43826260'
+  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__2113758928875883804_47945920'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__2113758928875883804_47945920'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.6ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 02:01:11 -0500
+  Processing by PostsController#new as HTML
+  [1m[35mAuthor Load (0.1ms)[0m  SELECT "authors".* FROM "authors" 
+Rendered posts/_comment_fields.haml (89.8ms)
+Rendered posts/_comment_fields.haml (60.8ms)
+Rendered posts/_form.html.haml (380.2ms)
+Rendered posts/new.html.haml within layouts/application (389.8ms)
+Completed 500 Internal Server Error in 397ms
+
+ActionView::Template::Error (undefined method `author' for #<Comment:0x000000060c89f0>):
+    4:     = f.input :body
+    5:     = f.input :created_at
+    6:     = f.input :updated_at
+    7:     = f.input :author
+  app/views/posts/_comment_fields.haml:7:in `block in _app_views_posts__comment_fields_haml___4288748552898682072_50148600'
+  app/views/posts/_comment_fields.haml:2:in `_app_views_posts__comment_fields_haml___4288748552898682072_50148600'
+  app/views/posts/_form.html.haml:18:in `_app_views_posts__form_html_haml___3966047639622805077_43826260'
+  app/views/posts/new.html.haml:5:in `block in _app_views_posts_new_html_haml__2113758928875883804_47945920'
+  app/views/posts/new.html.haml:3:in `_app_views_posts_new_html_haml__2113758928875883804_47945920'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.6ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 02:09:02 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/_comment_fields.haml (34.7ms)
+Rendered posts/_comment_fields.haml (108.6ms)
+Rendered posts/_form.html.haml (759.9ms)
+Rendered posts/new.html.haml within layouts/application (789.4ms)
+Compiled application.css  (1ms)  (pid 28598)
+Compiled monkeys.css  (0ms)  (pid 28598)
+Compiled scaffold.css  (0ms)  (pid 28598)
+Completed 500 Internal Server Error in 969ms
+
+ActionView::Template::Error (couldn't find file 'jquery'
+  (in /home/xn/sites/enform/spec/dummy/app/assets/javascripts/application.js:7)):
+    3: <head>
+    4:   <title>Dummy</title>
+    5:   <%= stylesheet_link_tag    "application" %>
+    6:   <%= javascript_include_tag "application" %>
+    7:   <%= csrf_meta_tags %>
+    8: </head>
+    9: <body>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___3855695435875603518_37532280'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.3ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 02:11:06 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.2ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/_comment_fields.haml (84.0ms)
+Rendered posts/_comment_fields.haml (109.4ms)
+Rendered posts/_form.html.haml (764.0ms)
+Rendered posts/new.html.haml within layouts/application (793.5ms)
+Completed 500 Internal Server Error in 903ms
+
+ActionView::Template::Error (couldn't find file 'jquery'
+  (in /home/xn/sites/enform/spec/dummy/app/assets/javascripts/application.js:7)):
+    3: <head>
+    4:   <title>Dummy</title>
+    5:   <%= stylesheet_link_tag    "application" %>
+    6:   <%= javascript_include_tag "application" %>
+    7: 
+    8:   <%= csrf_meta_tags %>
+    9: </head>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb__2634098480411626740_44022440'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.3ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 02:13:35 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/_comment_fields.haml (83.6ms)
+Rendered posts/_comment_fields.haml (111.2ms)
+Rendered posts/_form.html.haml (826.8ms)
+Rendered posts/new.html.haml within layouts/application (856.8ms)
+Completed 500 Internal Server Error in 971ms
+
+ActionView::Template::Error (couldn't find file 'jquery'
+  (in /home/xn/sites/enform/spec/dummy/app/assets/javascripts/application.js:7)):
+    3: <head>
+    4:   <title>Dummy</title>
+    5:   <%= stylesheet_link_tag    "application" %>
+    6:   <%= javascript_include_tag "application" %>
+    7: 
+    8:   <%= csrf_meta_tags %>
+    9: </head>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___1951393807752712376_42553740'
+  app/controllers/posts_controller.rb:29:in `new'
+
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+Rendered /home/xn/.rvm/gems/ruby-1.9.2-head@qrcode/gems/actionpack-3.1.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (5.5ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2011-10-25 02:16:15 -0500
+  Processing by PostsController#new as HTML
+  [1m[36mAuthor Load (0.1ms)[0m  [1mSELECT "authors".* FROM "authors" [0m
+Rendered posts/_comment_fields.haml (34.9ms)
+Rendered posts/_comment_fields.haml (106.6ms)
+Rendered posts/_form.html.haml (798.1ms)
+Rendered posts/new.html.haml within layouts/application (872.2ms)
+Compiled application.js  (5ms)  (pid 28827)
+Compiled jquery.js  (2ms)  (pid 28827)
+Compiled jquery_ujs.js  (0ms)  (pid 28827)
+Compiled cocoon.js  (0ms)  (pid 28827)
+Compiled monkeys.js  (0ms)  (pid 28827)
+Completed 200 OK in 1084ms (Views: 1081.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /application.css - 200 OK (0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /scaffold.css - 200 OK (5ms)
+
+
+Started GET "/assets/monkeys.css?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /monkeys.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /jquery.js - 200 OK (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /jquery_ujs.js - 200 OK (2ms)
+
+
+Started GET "/assets/cocoon.js?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /cocoon.js - 200 OK (2ms)
+
+
+Started GET "/assets/monkeys.js?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /monkeys.js - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2011-10-25 02:16:18 -0500
+Served asset /application.js - 200 OK (0ms)

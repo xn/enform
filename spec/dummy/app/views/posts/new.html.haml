@@ -1,0 +1,8 @@
+%h2
+  Create Post
+= semantic_form_for(@post, :html => { :method => :post }) do |f|
+  = f.semantic_errors
+  = render 'form', :f => f
+  = f.buttons do
+    = f.commit_button :submit, "Create"
+= link_to "Back", :back

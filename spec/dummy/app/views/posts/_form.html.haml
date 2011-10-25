@@ -1,0 +1,18 @@
+= f.inputs do
+  = f.input :title
+  = f.input :body
+  = f.input :created_at
+  = f.input :updated_at
+  = f.input :author
+= f.semantic_fields_for :category do |category|
+  = category.input :title
+  = category.input :body
+  = category.input :created_at
+  = category.input :updated_at
+  = category.input :author
+%h3 Comments
+#comments
+  = f.semantic_fields_for :comments do |comment|
+    = render 'comment_fields', :f => comment
+  .links
+    = link_to_add_association 'add comment', f, :comments

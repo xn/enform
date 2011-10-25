@@ -1,0 +1,27 @@
+= f.inputs do
+<%- model_attributes.each do |attr| -%>
+<%- unless attr[0].match(/.*_id$|^id$/)-%>  = f.input :<%= attr[0] -%>
+
+<%- end -%>
+<%- end -%>
+<%- belong_tos.each do |bt| -%>  = f.input :<%= bt.name %>
+<%- end -%>
+<%- have_ones.each do |ho| -%>= f.semantic_fields_for :<%= ho.name%> do |<%= ho.name%>|
+<%- attributes_for(ho).each do |attr| -%>
+<%- unless attr[0].match(/.*_id$|^id$/)-%>  = <%= ho.name%>.input :<%= attr[0] -%>
+
+<%- end -%>
+<%- end -%>
+<%- belong_tos_for(ho.active_record).each do |bt| -%>
+<%- unless bt.name == klass.table_name -%>  = <%= ho.name%>.input :<%= bt.name -%>
+
+<%- end -%>
+<%- end -%>
+<%- end -%>
+<%- have_manies.each do |hm| -%>%h3 <%= hm.name.to_s.pluralize.humanize%>
+#<%= hm.name%>
+  = f.semantic_fields_for :<%= hm.name%> do |<%= hm.name.to_s.singularize%>|
+    = render '<%= hm.name.to_s.singularize%>_fields', :f => <%= hm.name.to_s.singularize %>
+  .links
+    = link_to_add_association 'add <%= hm.name.to_s.singularize %>', f, :<%= hm.name %>
+<%- end -%>

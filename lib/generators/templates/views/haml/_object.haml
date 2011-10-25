@@ -1,0 +1,10 @@
+.nested-fields
+  = f.inputs do
+<%- attributes_for(@hm).each do |attr| -%>
+<%- unless attr[0].match(/.*_id$|^id$/)-%>    = f.input :<%= attr[0] %>
+<%- end -%>
+<%- end -%>
+<%- belong_tos_for(@hm.klass).each do |bt| -%>
+<%- unless bt.name.to_s == klass.table_name.to_s.singularize -%>    = f.input :<%= bt.name -%>
+<%- end -%>
+<%- end -%>

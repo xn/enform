@@ -1,0 +1,8 @@
+%h2
+  Edit <%= model_name %>
+= semantic_form_for(@<%= klass.table_name.singularize%>, :html => { :method => :put }) do |f|
+  = f.semantic_errors
+  = render 'form', :f => f
+  = f.buttons do
+    = f.commit_button :submit, "Update"
+= link_to "Back", :back
